@@ -1,2 +1,2 @@
-# 2025-HOMEWORK-590835-609784
-2025-HOMEWORK-590835-609784
+# DIADIA
+Studio di caso a supporto del corso di Programmazione Orientata agli Oggetti
