@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.ambienti;
 
+
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
@@ -121,16 +122,33 @@ public class Stanza {
 	 */
 	public String toString() {
 		StringBuilder risultato = new StringBuilder();
-		risultato.append(this.nome);
-		risultato.append("\nUscite: ");
-		for (String direzione : this.direzioni)
-			if (direzione!=null)
-				risultato.append(" " + direzione);
-		risultato.append("\nAttrezzi nella stanza: ");
-		for (Attrezzo attrezzo : this.attrezzi){
-			if(attrezzo!=null)
-				risultato.append(attrezzo.toString()+" ");
+		risultato.append("Uscite:[");
+
+		StringBuilder usciteString = new StringBuilder();
+		for (String direzione : this.direzioni) {
+			if (direzione != null) {
+				if (usciteString.length() > 0) {
+					usciteString.append(" - ");
+				}
+				usciteString.append(direzione);
+			}
 		}
+		risultato.append(usciteString.toString());
+		risultato.append("]");
+
+		risultato.append("\nAttrezzi nella stanza:[");
+		StringBuilder attrezziString = new StringBuilder();
+		for (Attrezzo attrezzo : this.attrezzi) {
+			if (attrezzo != null) {
+				if (attrezziString.length() > 0) {
+					attrezziString.append(" - ");
+				}
+				attrezziString.append(attrezzo.toString());
+			}
+		}
+		risultato.append(attrezziString.toString());
+		risultato.append("]");
+
 		return risultato.toString();
 	}
 
@@ -141,8 +159,8 @@ public class Stanza {
 	public boolean hasAttrezzo(String nomeAttrezzo) {
 		boolean trovato;
 		trovato = false;
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
+		for (int i = 0; i < this.numeroAttrezzi; i++) {
+			if (this.attrezzi[i] != null && this.attrezzi[i].getNome().equals(nomeAttrezzo))
 				trovato = true;
 		}
 		return trovato;

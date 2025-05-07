@@ -1,7 +1,10 @@
 package it.uniroma3.diadia.giocatore;
 
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 
+import it.uniroma3.diadia.attrezzi.Attrezzo;
+/**
+ * borsa del giocatore 
+ */
 public class Borsa {
 	public final static int DEFAULT_PESO_MAX_BORSA = 10;
 	private Attrezzo[] attrezzi;
@@ -16,6 +19,11 @@ public class Borsa {
 		this.attrezzi = new Attrezzo[10]; // speriamo bastino...
 		this.numeroAttrezzi = 0;
 	}
+	/**
+	 * aggiunge un attrezzo alla borsa
+	 * @param attrezzo
+	 * @return
+	 */
 
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		if (this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
@@ -30,7 +38,11 @@ public class Borsa {
 	public int getPesoMax() {
 		return pesoMax;
 	}
-
+	/**
+	 * trova l'oggetto attrezzo cercato se presente
+	 * @param nomeAttrezzo
+	 * @return
+	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
@@ -53,7 +65,11 @@ public class Borsa {
 	public boolean hasAttrezzo(String nomeAttrezzo) {
 		return this.getAttrezzo(nomeAttrezzo)!=null;
 	}
-
+	/**
+	 * rimuove un attrezzo dalla borsa se presente
+	 * @param nomeAttrezzo
+	 * @return
+	 */
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		for (int i = 0; i < this.numeroAttrezzi; i++) {
 			if (this.attrezzi[i] != null && this.attrezzi[i].getNome().equals(nomeAttrezzo)) {
@@ -74,13 +90,20 @@ public class Borsa {
 		return null; // Se l'attrezzo non è stato trovato
 	}
 
-
+	/**
+	 * costruisce una stampa della borsa
+	 */
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		if (!this.isEmpty()) {
-			s.append("Contenuto borsa ("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): ");
-			for (int i= 0; i<this.numeroAttrezzi; i++)
-				s.append(attrezzi[i].toString()+" ");
+			s.append("Contenuto borsa("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): [");
+			if (this.numeroAttrezzi > 0) {
+	            s.append(attrezzi[0].toString()); // Aggiungi il primo attrezzo senza trattino
+	            for (int i = 1; i < this.numeroAttrezzi; i++) {
+	                s.append(" - " + attrezzi[i].toString()); // Aggiungi il trattino prima degli attrezzi successivi
+	            }
+	        }
+			s.append("]");
 		}
 		else
 			s.append("Borsa vuota");

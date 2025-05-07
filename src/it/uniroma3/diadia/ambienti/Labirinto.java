@@ -1,5 +1,6 @@
 package it.uniroma3.diadia.ambienti;
 
+
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Labirinto{
@@ -49,11 +50,17 @@ public class Labirinto{
 		stanzaIniziale = atrio;  
 		stanzaVincente = biblioteca;
 	}
-
+	/**
+	 * restituisce la stanza vincente
+	 * @return
+	 */
 	public Stanza getStanzaVincente() {
 		return stanzaVincente;
 	}
-
+	/**
+	 * restituisce la stanza iniziale
+	 * @return
+	 */
 	public Stanza getStanzaIniziale() {
 		return this.stanzaIniziale;
 	}}
